@@ -3,11 +3,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const usuariosRoutes = require("./routes/usuarios"); //Importar rutas
 
 dotenv.config(); //Carga variables entorno desde .env
 
 const app = express();
+
+//Configurar consr
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 //Middlewares
 app.use(bodyParser.json()); //Para parear el json
